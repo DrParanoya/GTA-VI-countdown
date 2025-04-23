@@ -52,6 +52,11 @@
             color: #a3cbe7;
             text-decoration: none;
         }
+        #countdown {
+            background: #6a6d7a;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -73,13 +78,45 @@
                 <strong>Hobbies and Interests</strong>
                 <p>Programming, skiing, reading and i also play games from time, but not a lot anymore, thats some of my favourite hobbies but i do a lot more, if you want to know more about me, make sure to send me a friend request and ask me.</p>
             </div>
+            <div id="countdown" class="info-section">
+                <strong>🎄 Christmas Eve Countdown:</strong>
+                <p id="timer">Loading...</p>
+            </div>
         </div>
-        <p>Here are some of my other platforms:</p>
+        <p>Here are some of my favourite projects:</p>
         <p>
+            <h6>I made them out of boredom, dont expect them to be good.</h6>
             <a href="#" target="_blank"></a> 
-            <a href="https://github.com/Flomega" target="_blank">GitHub</a> 
-            <a href="#" target="_blank"></a>
+            <a href="https://github.com/Flomega/GamblingBot" target="_blank">GamblingBot - GitHub</a> <br>
+            <a href="https://flomega.github.io/Flomega-IQ-Test/" target="_blank">QuizGame - Website</a>
         </p>
     </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const christmasEve = new Date(`December 24, ${currentYear} 00:00:00`);
+
+            // If Christmas Eve has passed this year, count down to next year
+            if (now > christmasEve) {
+                christmasEve.setFullYear(currentYear + 1);
+            }
+
+            const diff = christmasEve - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("timer").textContent =
+                `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds until Christmas Eve 🎅🎁`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
+
